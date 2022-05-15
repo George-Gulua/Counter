@@ -1,24 +1,21 @@
 <template>
-    <div id="header-menu">
-        <header>
-            <div class="container">
-                <a class="label" href="/">Count<span>er</span></a>
-                <button class="btn-create" @click="addElement">Создать счетчик</button>
-            </div>
-        </header>
-    </div>
+    <header class="header-menu">
+        <div class="container">
+            <a class="label" href="/">Count<span>er</span></a>
+            <button class="btn-create" @click="addElement()">Создать счетчик</button>
+        </div>
+    </header>
 </template>
 
 <script>
 export default {
-    name: "HeaderMenu",
+    name: 'HeaderMenu',
     methods: {
         addElement () {
-            const newCounter = {
+            this.$emit('add-counter-card', {
                 id: Date.now(),
                 number: 0
-            }
-            this.$emit('add-counter', newCounter)
+            })
         }
     }
 }
@@ -67,7 +64,7 @@ span {
 
 @media screen and (max-width: 375px){
     .btn-create {
-        padding: 8px 16px;
+        padding: 8px 12px;
     }
 }
 </style>

@@ -1,48 +1,41 @@
 <template>
     <div class="counter-item">
-        <div class="counter-number">{{ counter.number }}</div>
-        <button class="btn-increment" @click="increment">Увеличить</button>
+        <div class="counter-number">{{ counterItem.number }}</div>
+        <button class="btn-increment" @click="$emit('increment-value')">Увеличить</button>
     </div>
 </template>
 
 <script>
-
 export default {
-    name: "CounterItem",
+    name: 'CounterItem',
     props: {
-        counter: {
+        counterItem: {
             type: Object,
             required: true
-        }
-    },
-    methods: {
-        increment () {
-            this.$emit('increment-value')
         }
     }
 }
 </script>
-<style>
+
+<style scoped>
 .counter-item {
     display: inline-flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     background: white;
-    flex-basis: calc(100%/3 - 50px);
     border-radius: 16px;
+    padding: 32px;
+    flex-basis: calc(100%/4 - 50px);
     box-shadow: 0px 0px 4px rgba(0, 0, 0, .1);
-}
-
-.counter-number {
-    padding: 0px 24px;
 }
 
 .btn-increment {
     display: flex;
     align-items: center;
     border: 1px solid var(--color-edit);
-    border-radius: 0px 16px 16px 0px;
+    border-radius: 16px 16px 16px 16px;
     padding: 16px 24px;
+    margin-top: 16px;
     cursor: pointer;
     transition: .3s;
 }
@@ -51,15 +44,18 @@ export default {
     background: var(--color-edit);
 }
 
-@media screen and (max-width: 1024px){
+
+@media screen and (max-width: 1264px){
     .counter-item {
-        flex-basis: calc(100%/2 - 50px);
+        flex-basis: calc(100%/3 - 50px);
     }
 }
 
-@media screen and (max-width:768px){
+@media screen and (max-width: 600px){
     .counter-item {
-        flex-basis: 100%;
+        flex-basis: 100%
     }
 }
+
+
 </style>

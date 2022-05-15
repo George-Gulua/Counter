@@ -1,25 +1,29 @@
 <template>
-    <div id="main-section">
-        <main>
+    <main class="main-section">
             <div class="container">
                  <h2 class="section-title">Список счетчиков</h2>
-                 <div class="counters">
+                 <div class="counter-list">
                      <counter-item
-                        v-for="counter in counters" :key="counter.id"
-                        v-bind:counter="counter"
-                        @increment-value="counter.number++"
+                        v-for="counterItem in counterList" :key="counterItem.id"
+                        :counterItem="counterItem"
+                        @increment-value="counterItem.number++"
                       />
                  </div>
             </div>
-        </main>
-    </div>
+    </main>
 </template>
 
 <script>
-import CounterItem from "@/components/CounterItem.vue";
+import CounterItem from '@/components/CounterItem.vue'
+
 export default {
-    name: "MainSection",
-    props: ['counters'],
+    name: 'MainSection',
+    props: {
+        counterList: {
+            type: Array,
+            required: true
+        }
+    },
     components: {
         CounterItem
     }
@@ -33,11 +37,9 @@ export default {
     flex-direction: column;
 }
 
-.counters {
+.counter-list {
     display: flex;
     flex-wrap: wrap;
-    row-gap: 50px;
-    column-gap: 75px;
+    gap: 50px;
 }
-
 </style>
